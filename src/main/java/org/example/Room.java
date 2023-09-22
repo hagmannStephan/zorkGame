@@ -9,6 +9,15 @@ public class Room {
     private HashMap<String, Room> exits;
     private boolean containsPlayer;
     private boolean containsKing;
+    private boolean previousRoom;
+
+    public boolean isPreviousRoom() {
+        return previousRoom;
+    }
+
+    public void setPreviousRoom(boolean previousRoom) {
+        this.previousRoom = previousRoom;
+    }
 
     public String getName() {
         return name;
@@ -50,12 +59,13 @@ public class Room {
         this.containsKing = containsKing;
     }
 
-    public Room(String name,ArrayList<Item> itemInRoom,HashMap<String, Room>exits, boolean containsPlayer, boolean containsKing){
+    public Room(String name,ArrayList<Item> itemInRoom,HashMap<String, Room>exits, boolean containsPlayer, boolean containsKing, boolean previousRoom){
         this.name = name;
         this.itemInRoom = itemInRoom;
         this.exits = exits;
         this.containsPlayer = containsPlayer;
         this.containsKing = containsKing;
+        this.previousRoom = previousRoom;
     }
     public void setExits(Room north, Room east, Room south, Room west) {
         exits.put("north", north);
