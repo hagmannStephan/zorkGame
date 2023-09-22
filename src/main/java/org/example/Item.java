@@ -1,11 +1,11 @@
 package org.example;
 
 public class Item {
-    public String name;
-    public String location;
-    public int weight;
-    public boolean isPickedUp;
-    public boolean ableToKillKing;
+    private String name;
+    private String location;
+    private int weight;
+    private boolean isPickedUp;
+    private boolean ableToKillKing;
 
     public String getName() {
         return name;
@@ -53,5 +53,7 @@ public class Item {
         this.weight = weight;
         this.isPickedUp = isPickedUp;
         this.ableToKillKing = ableToKillKing;
+
+        // TODO: Place the Item in the correct location, this also has to be true if it is dropped again
     }
 }

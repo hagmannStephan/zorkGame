@@ -4,7 +4,10 @@ public class Zork2Game {
     public static void main(String[] args) {
         Game zorkgame = new Game();
 
-        //Todo: Game.play aufrufen
+        zorkgame.initiate_Items();
+        System.out.println("Items initiated successfully");
+
+        // TODO: Initiate Rooms
 
     }
 }
