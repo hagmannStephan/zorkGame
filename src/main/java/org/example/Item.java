@@ -1,10 +1,9 @@
 package org.example;
 
-public class Items {
+public class Item {
     public String name;
     public String location;
     public int weight;
-    public boolean ableToBePickedUp;
     public boolean isPickedUp;
     public boolean ableToKillKing;
 
@@ -32,14 +31,6 @@ public class Items {
         this.weight = weight;
     }
 
-    public boolean isAbleToBePickedUp() {
-        return ableToBePickedUp;
-    }
-
-    public void setAbleToBePickedUp(boolean ableToBePickedUp) {
-        this.ableToBePickedUp = ableToBePickedUp;
-    }
-
     public boolean isPickedUp() {
         return isPickedUp;
     }
@@ -56,11 +47,10 @@ public class Items {
         this.ableToKillKing = ableToKillKing;
     }
 
-    public Items(String name, String location, int weight, boolean ableToBePickedUp, boolean isPickedUp, boolean ableToKillKing){
+    public Item(String name, String location, int weight, boolean isPickedUp, boolean ableToKillKing){
         this.name = name;
         this.location = location;
         this.weight = weight;
-        this.ableToBePickedUp = ableToBePickedUp;
         this.isPickedUp = isPickedUp;
         this.ableToKillKing = ableToKillKing;
     }
