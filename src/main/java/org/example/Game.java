@@ -27,4 +27,42 @@ public class Game {
         System.out.println("type 'help', if you need help.");
         System.out.println("---------------------------------------------------------------");
     }
+
+    private boolean processCommand(Command command){
+        if (command.isNotACommand()){
+            System.out.println("That is not a command!");
+            return false;
+        }
+
+        String commandWord = command.getCommandWord();
+        if (commandWord=="!back"){
+            //TODO: go to 'previousLocation'... oder wieauimmer es heisst.
+        } else if (commandWord=="!map") {
+            //TODO: create a map
+        } else if (commandWord=="!inventory") {
+            //TODO: List items in inventory
+        } else if (commandWord=="!drop") {
+            //TODO: Drop mit commmandArgument
+        } else if (commandWord=="!items") {
+            //TODO: List items in room
+        } else if (commandWord=="!scare") {
+            //TODO: If king in room = win
+        } else if (commandWord=="!exits") {
+            //TODO: show exits
+        } else if (commandWord=="!move") {
+            //TODO: Go to another room
+        } else if (commandWord=="!help") {
+            System.out.println("Type '!map' for map of the game.");
+            System.out.println("Type '!back' to go to the previous room.");
+            System.out.println("Type '!inventory' for a list of all your items.");
+            System.out.println("Type '!drop' with an arguement.."); //TODO: Ich hen kein bock auf das
+            System.out.println("Type '!items' for a list of all items in your location.");
+            System.out.println("Type '!scare' to kill the king.");
+            System.out.println("Type '!exits' to show a list of all exits.");
+            System.out.println("Type '!move' with an arguement.."); //TODO: Hen au kei bock uf das.
+            System.out.println("Type '!help' for this view.");
+        }
+        //TODO: Ein command fehlt. Schau doku.
+        return false;
+    }
 }
