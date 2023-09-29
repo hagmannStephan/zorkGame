@@ -13,18 +13,35 @@ public class Game {
         Item Suppe = new Item("Suppe", "Kueche", 500, false,false);
         Item Gewand = new Item("Gewand", "Schlafzimmer", 2000, false,false);
 
-        ArrayList<Item> kapelleItems = new ArrayList<>();
         ArrayList<Item> hofItems = new ArrayList<>();
         ArrayList<Item> ballsaalItems = new ArrayList<>();
+        ArrayList<Item> kronsaalItems = new ArrayList<>();
+        ArrayList<Item> kuecheItems = new ArrayList<>();
+        ArrayList<Item> schlafzimmerItems = new ArrayList<>();
+        ArrayList<Item> schatzkammerItems = new ArrayList<>();
 
-        hofItems.add(Rose)
+        hofItems.add(Rose);
+        ballsaalItems.add(Champagne);
+        kronsaalItems.add(Krone);
+        kuecheItems.add(Suppe);
+        schlafzimmerItems.add(Gewand);
+        schatzkammerItems.add(Messer);
 
-        Room kapelle = new Room("Kapelle", kapelleItems, true, false, false);
+        Room kapelle = new Room("Kapelle", null, true, false, false);
         Room hof = new Room("Hof", hofItems, false, false, false);
-        Room ballsaal = new Room("Ballsaal", ballsaalItems, );
+        Room ballsaal = new Room("Ballsaal", ballsaalItems, false, false, false);
+        Room kronsaal = new Room("Kronsaal", kronsaalItems, false, true, false);
+        Room kueche = new Room("Küche", kuecheItems, false, false, false);
+        Room schlafzimmer = new Room("Schlafzimmer", schlafzimmerItems, false, false, false);
+        Room schatzkammer = new Room("Schatzkammer", schatzkammerItems, false, false, false);
 
         kapelle.setExits(null, hof, null, null);
         hof.setExits(null, ballsaal, null, kapelle);
+        ballsaal.setExits(kronsaal, schlafzimmer, kueche, hof);
+        kronsaal.setExits(null, null, ballsaal, null);
+        kueche.setExits(ballsaal, null, null, null);
+        schlafzimmer.setExits(schatzkammer, null, null, ballsaal);
+        schatzkammer.setExits(null, null, schlafzimmer, null);
     }
 
     public void play(){
