@@ -2,10 +2,11 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Room {
     private String name;
-    private ArrayList<Item> itemInRoom;
+    private ArrayList<Item> itemsInRoom;
     private boolean containsPlayer;
     private boolean containsKing;
     private boolean previousRoom;
@@ -13,6 +14,14 @@ public class Room {
 
     public boolean isPreviousRoom() {
         return previousRoom;
+    }
+
+    public boolean isContainsPlayer() {
+        return containsPlayer;
+    }
+
+    public boolean isContainsKing() {
+        return containsKing;
     }
 
     public void setPreviousRoom(boolean previousRoom) {
@@ -27,24 +36,16 @@ public class Room {
         this.name = name;
     }
 
-    public ArrayList<Item> getItemInRoom() {
-        return itemInRoom;
+    public ArrayList<Item> getItemsInRoom() {
+        return itemsInRoom;
     }
 
-    public void setItemInRoom(ArrayList<Item> itemInRoom) {
-        this.itemInRoom = itemInRoom;
-    }
-
-    public boolean isContainsPlayer() {
-        return containsPlayer;
+    public void setItemsInRoom(ArrayList<Item> itemsInRoom) {
+        this.itemsInRoom = itemsInRoom;
     }
 
     public void setContainsPlayer(boolean containsPlayer) {
         this.containsPlayer = containsPlayer;
-    }
-
-    public boolean isContainsKing() {
-        return containsKing;
     }
 
     public void setContainsKing(boolean containsKing) {
@@ -61,7 +62,7 @@ public class Room {
 
     public Room(String name,ArrayList<Item> itemInRoom, boolean containsPlayer, boolean containsKing, boolean previousRoom){
         this.name = name;
-        this.itemInRoom = itemInRoom;
+        this.itemsInRoom = itemInRoom;
         this.containsPlayer = containsPlayer;
         this.containsKing = containsKing;
         this.previousRoom = previousRoom;

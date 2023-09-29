@@ -5,19 +5,23 @@ import java.util.ArrayList;
 
 public class Game {
 
-    public void initiate_Items() {
+    public void initiate_game() {
         Item Messer = new Item("Messer", "Schatzkammer", 200, false,true);
         Item Rose = new Item("Rose", "hof", 5, false, false);
         Item Krone = new Item("Krone", "Kronsaal", 5000, false, false);
         Item Champagne = new Item("Champagne", "Ballsaal", 1000, false,false);
         Item Suppe = new Item("Suppe", "Kueche", 500, false,false);
         Item Gewand = new Item("Gewand", "Schlafzimmer", 2000, false,false);
-    }
 
-    public void initiate_Rooms(){
-        Room kapelle = new Room("Kapelle", null, true, false, false);
-        Room hof = new Room("Hof", , false, false, false);
-        Room ballsaal = new Room("Ballsaal", )
+        ArrayList<Item> kapelleItems = new ArrayList<>();
+        ArrayList<Item> hofItems = new ArrayList<>();
+        ArrayList<Item> ballsaalItems = new ArrayList<>();
+
+        hofItems.add(Rose)
+
+        Room kapelle = new Room("Kapelle", kapelleItems, true, false, false);
+        Room hof = new Room("Hof", hofItems, false, false, false);
+        Room ballsaal = new Room("Ballsaal", ballsaalItems, );
 
         kapelle.setExits(null, hof, null, null);
         hof.setExits(null, ballsaal, null, kapelle);
@@ -36,7 +40,7 @@ public class Game {
         System.out.println("---------------------------------------------------------------");
         System.out.println("Welcome to Kill The King!");
         System.out.println("The goal of this game, is to chase the King out of the castle.");
-        System.out.println("type 'help', if you need help.");
+        System.out.println("type '!help', if you need help.");
         System.out.println("---------------------------------------------------------------");
     }
 
