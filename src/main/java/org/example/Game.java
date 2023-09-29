@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Game {
     private Parser parser;
     private ArrayList<Room> rooms;
+    private Room currentRoom;
 
     public void initiate_game() {
 
@@ -117,6 +118,7 @@ public class Game {
             String direction = "east";
             Room.movePlayer(this.rooms, direction);
 
+            goRoom(command);
         } else if (commandWord.equals("!help")) {
             System.out.println("Type '!map' for map of the game.");
             System.out.println("Type '!back' to go to the previous room.");
@@ -126,9 +128,31 @@ public class Game {
             System.out.println("Type '!pickup' with an argument... "); //TODO: Glich kein bock uf das
             System.out.println("Type '!scare' to kill the king.");
             System.out.println("Type '!exits' to show a list of all exits.");
-            System.out.println("Type '!move' with an argument.."); //TODO: Hen au kei bock uf das.
+            System.out.println("Type '!move' with an argument. (north, east, south, west");
             System.out.println("Type '!help' for this view.");
         }
         return false;
     }
+
+    private void goRoom(Command command) {
+        if (!command.hasAnArgument()) {
+            System.out.println("Go where?");
+        } else {
+            String name = command.getCommandArgument();
+
+            // Try to leave the current room.
+            currentRoom.setContainsPlayer(false); // Set containsPlayer to false in the current room
+
+            Room nextRoom = currentRoom.nextRoom(name);
+
+            if (nextRoom == null)
+                System.out.println("There is no door!");
+            else {
+                nextRoom.setContainsPlayer(true); // Set containsPlayer to true in the next room
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.whereName());
+            }
+        }
+    }
+
 }

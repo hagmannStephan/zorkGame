@@ -98,4 +98,14 @@ public class Room {
             System.out.println("Player not found in any room.");
         }
     }
+
+    public String whereName(){
+        StringBuilder stringBuilder = new StringBuilder("You are in " + name );
+        return stringBuilder.toString();
+    }
+
+    public Room nextRoom(String name) {
+        return exits.get(name);
+    }
+
 }
