@@ -112,7 +112,7 @@ public class Game {
         } else if (commandWord.equals("!scare")) {
             //TODO: If king in room = win
         } else if (commandWord.equals("!exits")) {
-            //TODO: show exits
+            Room.displayExits(this.rooms);
         } else if (commandWord.equals("!move")) {
             //Add function that returns direction to move to
             String direction = "east";
