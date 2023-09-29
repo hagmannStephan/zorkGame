@@ -1,5 +1,8 @@
 package org.example;
 
+import javax.sql.RowSet;
+import java.util.ArrayList;
+
 public class Game {
 
     public void initiate_Items() {
@@ -9,6 +12,15 @@ public class Game {
         Item Champagne = new Item("Champagne", "Ballsaal", 1000, false,false);
         Item Suppe = new Item("Suppe", "Kueche", 500, false,false);
         Item Gewand = new Item("Gewand", "Schlafzimmer", 2000, false,false);
+    }
+
+    public void initiate_Rooms(){
+        Room kapelle = new Room("Kapelle", null, true, false, false);
+        Room hof = new Room("Hof", , false, false, false);
+        Room ballsaal = new Room("Ballsaal", )
+
+        kapelle.setExits(null, hof, null, null);
+        hof.setExits(null, ballsaal, null, kapelle);
     }
 
     public void play(){
@@ -45,6 +57,8 @@ public class Game {
             //TODO: Drop mit commmandArgument
         } else if (commandWord=="!items") {
             //TODO: List items in room
+        } else if (commandWord=="!pickup") {
+            //TODO: Mit commandArgumant
         } else if (commandWord=="!scare") {
             //TODO: If king in room = win
         } else if (commandWord=="!exits") {
@@ -55,14 +69,14 @@ public class Game {
             System.out.println("Type '!map' for map of the game.");
             System.out.println("Type '!back' to go to the previous room.");
             System.out.println("Type '!inventory' for a list of all your items.");
-            System.out.println("Type '!drop' with an arguement.."); //TODO: Ich hen kein bock auf das
+            System.out.println("Type '!drop' with an argument.."); //TODO: Ich hen kein bock auf das
             System.out.println("Type '!items' for a list of all items in your location.");
+            System.out.println("Type '!pickup' with an argument... "); //TODO: Glich kein bock uf das
             System.out.println("Type '!scare' to kill the king.");
             System.out.println("Type '!exits' to show a list of all exits.");
-            System.out.println("Type '!move' with an arguement.."); //TODO: Hen au kei bock uf das.
+            System.out.println("Type '!move' with an argument.."); //TODO: Hen au kei bock uf das.
             System.out.println("Type '!help' for this view.");
         }
-        //TODO: Ein command fehlt. Schau doku.
         return false;
     }
 }

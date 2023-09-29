@@ -9,5 +9,6 @@ public class Zork2Game {
 
         // TODO: Initiate Rooms
 
+        zorkgame.play();
     }
 }
