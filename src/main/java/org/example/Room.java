@@ -74,4 +74,28 @@ public class Room {
         exits.put("south", south);
         exits.put("west", west);
     }
+
+    public static void movePlayer(ArrayList<Room> roomList, String direction) {
+        // Search for the room with containsPlayer set to true
+        Room currentRoom = null;
+        for (Room room : roomList) {
+            if (room.isContainsPlayer()) {
+                currentRoom = room;
+                room.setContainsPlayer(false);
+                break;
+            }
+        }
+
+        // Set containsPlayer to true in the room in the provided direction
+        if (currentRoom != null) {
+            Room nextRoom = currentRoom.getExits().get(direction);
+            if (nextRoom != null) {
+                nextRoom.setContainsPlayer(true);
+            } else {
+                System.out.println("There is no room in the " + direction + " direction.");
+            }
+        } else {
+            System.out.println("Player not found in any room.");
+        }
+    }
 }

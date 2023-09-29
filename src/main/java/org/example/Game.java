@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Game {
     private Parser parser;
+    private ArrayList<Room> rooms;
 
     public void initiate_game() {
 
@@ -38,6 +39,18 @@ public class Game {
         Room kueche = new Room("Küche", kuecheItems, false, false, false);
         Room schlafzimmer = new Room("Schlafzimmer", schlafzimmerItems, false, false, false);
         Room schatzkammer = new Room("Schatzkammer", schatzkammerItems, false, false, false);
+
+        ArrayList<Room> rooms = new ArrayList<Room>() {{
+            add(kapelle);
+            add(hof);
+            add(ballsaal);
+            add(kronsaal);
+            add(kueche);
+            add(schlafzimmer);
+            add(schatzkammer);
+        }};
+
+        this.rooms = rooms;
 
         kapelle.setExits(null, hof, null, null);
         hof.setExits(null, ballsaal, null, kapelle);
@@ -100,7 +113,10 @@ public class Game {
         } else if (commandWord.equals("!exits")) {
             //TODO: show exits
         } else if (commandWord.equals("!move")) {
-            //TODO: Go to another room
+            //Add function that returns direction to move to
+            String direction = "east";
+            Room.movePlayer(this.rooms, direction);
+
         } else if (commandWord.equals("!help")) {
             System.out.println("Type '!map' for map of the game.");
             System.out.println("Type '!back' to go to the previous room.");
