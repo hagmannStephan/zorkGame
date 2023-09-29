@@ -7,8 +7,6 @@ public class Zork2Game {
         zorkgame.initiate_game();
         System.out.println("Items initiated successfully");
 
-        // TODO: Initiate Rooms
-
         zorkgame.play();
     }
 }

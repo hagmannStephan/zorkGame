@@ -4,12 +4,12 @@ public class Command {
     private String commandWord;
     private String commandArgument;
 
+    public Command(String commandWord){
+        this(commandWord, null);
+    }
     public Command(String commandWord, String commandArgument) {
         this.commandWord = commandWord;
         this.commandArgument = commandArgument;
-    }
-    public Command(String commandWord){
-        this(commandWord, null);
     }
 
     public String getCommandWord() {

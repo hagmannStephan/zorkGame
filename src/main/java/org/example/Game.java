@@ -4,8 +4,12 @@ import javax.sql.RowSet;
 import java.util.ArrayList;
 
 public class Game {
+    private Parser parser;
 
     public void initiate_game() {
+
+        parser = new Parser(System.in);
+
         Item Messer = new Item("Messer", "Schatzkammer", 200, false,true);
         Item Rose = new Item("Rose", "hof", 5, false, false);
         Item Krone = new Item("Krone", "Kronsaal", 5000, false, false);
@@ -49,7 +53,8 @@ public class Game {
 
         boolean finished = false;
         while(!finished){
-
+            Command command = parser.getCommand();
+            finished = processCommand(command);
         }
         System.out.println("Thank you for playing!");
     }
@@ -68,9 +73,9 @@ public class Game {
         }
 
         String commandWord = command.getCommandWord();
-        if (commandWord=="!back"){
+        if (commandWord.equals("!back")){
             //TODO: go to 'previousLocation'... oder wieauimmer es heisst.
-        } else if (commandWord=="!map") {
+        } else if (commandWord.equals("!map")) {
             System.out.println("                                  |----------|     |-------------|");
             System.out.println("                                  | Kronsaal |     | Schatzkammer|");
             System.out.println("                                  |----------|     |-------------|");
@@ -82,21 +87,21 @@ public class Game {
             System.out.println("                                  |----------|");
             System.out.println("                                  | Küche    |");
             System.out.println("                                  |----------|");
-        } else if (commandWord=="!inventory") {
+        } else if (commandWord.equals("!inventory")) {
             //TODO: List items in inventory
-        } else if (commandWord=="!drop") {
+        } else if (commandWord.equals("!drop")) {
             //TODO: Drop mit commmandArgument
-        } else if (commandWord=="!items") {
+        } else if (commandWord.equals("!items")) {
             //TODO: List items in room
-        } else if (commandWord=="!pickup") {
+        } else if (commandWord.equals("!pickup")) {
             //TODO: Mit commandArgumant
-        } else if (commandWord=="!scare") {
+        } else if (commandWord.equals("!scare")) {
             //TODO: If king in room = win
-        } else if (commandWord=="!exits") {
+        } else if (commandWord.equals("!exits")) {
             //TODO: show exits
-        } else if (commandWord=="!move") {
+        } else if (commandWord.equals("!move")) {
             //TODO: Go to another room
-        } else if (commandWord=="!help") {
+        } else if (commandWord.equals("!help")) {
             System.out.println("Type '!map' for map of the game.");
             System.out.println("Type '!back' to go to the previous room.");
             System.out.println("Type '!inventory' for a list of all your items.");
