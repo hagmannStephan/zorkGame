@@ -11,4 +11,8 @@ public class CommandWord {
                 .filter(c -> c.equals(validCommandWord))
                 .count()>0;
     }
+
+    public String showAll() {
+        return String.join(" ", validCommands);
+    }
 }
