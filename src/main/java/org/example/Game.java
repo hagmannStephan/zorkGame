@@ -71,7 +71,17 @@ public class Game {
         if (commandWord=="!back"){
             //TODO: go to 'previousLocation'... oder wieauimmer es heisst.
         } else if (commandWord=="!map") {
-            //TODO: create a map
+            System.out.println("                                  |----------|     |-------------|");
+            System.out.println("                                  | Kronsaal |     | Schatzkammer|");
+            System.out.println("                                  |----------|     |-------------|");
+            System.out.println("                                        ∧                 ∧");
+            System.out.println("|----------|     |----------|     |----------|     |-------------|");
+            System.out.println("| Kapelle  | <-> | Hof      | <-> | Ballsaal | <-> | Schlafzimmer|");
+            System.out.println("|----------|     |----------|     |----------|     |-------------|");
+            System.out.println("                                        v");
+            System.out.println("                                  |----------|");
+            System.out.println("                                  | Küche    |");
+            System.out.println("                                  |----------|");
         } else if (commandWord=="!inventory") {
             //TODO: List items in inventory
         } else if (commandWord=="!drop") {
