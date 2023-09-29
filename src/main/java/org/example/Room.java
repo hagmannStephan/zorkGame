@@ -56,10 +56,6 @@ public class Room {
         return exits;
     }
 
-    public void setExits(HashMap<String, Room> exits) {
-        this.exits = exits;
-    }
-
     public Room(String name,ArrayList<Item> itemInRoom, boolean containsPlayer, boolean containsKing, boolean previousRoom){
         this.name = name;
         this.itemsInRoom = itemInRoom;
@@ -73,6 +69,18 @@ public class Room {
         exits.put("east", east);
         exits.put("south", south);
         exits.put("west", west);
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "name='" + name + '\'' +
+                ", itemsInRoom=" + itemsInRoom +
+                ", containsPlayer=" + containsPlayer +
+                ", containsKing=" + containsKing +
+                ", previousRoom=" + previousRoom +
+                ", exits=" + exits +
+                '}';
     }
 
     public static void movePlayer(ArrayList<Room> roomList, String direction) {
@@ -97,5 +105,19 @@ public class Room {
         } else {
             System.out.println("Player not found in any room.");
         }
+    }
+
+    public static void displayExits(ArrayList<Room> rooms) {
+        for (Room room : rooms) {
+            if (room.containsPlayer) {
+                System.out.println("Exits for the room with player:");
+                HashMap<String, Room> roomExits = room.getExits();
+                for (String exitDirection : roomExits.keySet()) {
+                    System.out.println(exitDirection + ": " + roomExits.get(exitDirection));
+                }
+                return; // Stop searching after finding the room with the player
+            }
+        }
+        System.out.println("No room with player found.");
     }
 }
