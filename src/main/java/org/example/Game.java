@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Game {
     private Parser parser;
     private ArrayList<Room> rooms;
-    private Room currentRoom;
 
     public void initiate_game() {
 
@@ -116,9 +115,12 @@ public class Game {
         } else if (commandWord.equals("!move")) {
             //Add function that returns direction to move to
             String direction = "east";
-            Room.movePlayer(this.rooms, direction);
+            if(!command.hasAnArgument()){
+                System.out.println("Command requires argument");
+            } else {
+                Room.movePlayer(this.rooms, command.getCommandArgument());
+            }
 
-            goRoom(command);
         } else if (commandWord.equals("!help")) {
             System.out.println("Type '!map' for map of the game.");
             System.out.println("Type '!back' to go to the previous room.");
@@ -132,27 +134,6 @@ public class Game {
             System.out.println("Type '!help' for this view.");
         }
         return false;
-    }
-
-    private void goRoom(Command command) {
-        if (!command.hasAnArgument()) {
-            System.out.println("Go where?");
-        } else {
-            String name = command.getCommandArgument();
-
-            // Try to leave the current room.
-            currentRoom.setContainsPlayer(false); // Set containsPlayer to false in the current room
-
-            Room nextRoom = currentRoom.nextRoom(name);
-
-            if (nextRoom == null)
-                System.out.println("There is no door!");
-            else {
-                nextRoom.setContainsPlayer(true); // Set containsPlayer to true in the next room
-                currentRoom = nextRoom;
-                System.out.println(currentRoom.whereName());
-            }
-        }
     }
 
 }

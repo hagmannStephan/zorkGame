@@ -71,18 +71,6 @@ public class Room {
         exits.put("west", west);
     }
 
-    @Override
-    public String toString() {
-        return "Room{" +
-                "name='" + name + '\'' +
-                ", itemsInRoom=" + itemsInRoom +
-                ", containsPlayer=" + containsPlayer +
-                ", containsKing=" + containsKing +
-                ", previousRoom=" + previousRoom +
-                ", exits=" + exits +
-                '}';
-    }
-
     public static void movePlayer(ArrayList<Room> roomList, String direction) {
         // Search for the room with containsPlayer set to true
         Room currentRoom = null;
@@ -90,6 +78,7 @@ public class Room {
             if (room.isContainsPlayer()) {
                 currentRoom = room;
                 room.setContainsPlayer(false);
+                room.setPreviousRoom(true); // Set previousRoom to true in the current room
                 break;
             }
         }
@@ -99,6 +88,7 @@ public class Room {
             Room nextRoom = currentRoom.getExits().get(direction);
             if (nextRoom != null) {
                 nextRoom.setContainsPlayer(true);
+                nextRoom.setPreviousRoom(false); // Clear previousRoom in the next room
             } else {
                 System.out.println("There is no room in the " + direction + " direction.");
             }
