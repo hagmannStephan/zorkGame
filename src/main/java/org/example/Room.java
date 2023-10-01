@@ -69,24 +69,21 @@ public class Room {
     }
 
     public static void movePlayer(ArrayList<Room> roomList, String direction) {
-        // Search for the room with containsPlayer set to true
         Room currentRoom = null;
         for (Room room : roomList) {
             if (room.isContainsPlayer()) {
                 currentRoom = room;
                 room.setContainsPlayer(false);
-                room.setPreviousRoom(true); // Set previousRoom to true in the current room
                 break;
             }
         }
 
-        // Set containsPlayer to true in the room in the provided direction
         if (currentRoom != null) {
             Room nextRoom = currentRoom.getExits().get(direction);
             if (nextRoom != null) {
                 nextRoom.setContainsPlayer(true);
-                nextRoom.setPreviousRoom(false); // Clear previousRoom in the next room
             } else {
+                currentRoom.setContainsPlayer(true);
                 System.out.println("There is no room in the " + direction + " direction.");
             }
         } else {
@@ -119,6 +116,15 @@ public class Room {
             }
         }
         return new Room("", new ArrayList<Item>(), false, false, false);
+    }
+
+    public static Boolean playerSameRoomKing(ArrayList<Room> rooms){
+        for (Room room : rooms){
+            if(room.containsPlayer && room.containsKing){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

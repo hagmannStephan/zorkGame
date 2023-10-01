@@ -7,7 +7,7 @@ public class Game {
     private Parser parser;
     private ArrayList<Room> rooms;
     private ArrayList<Item> items;
-
+    private Boolean hasWon;
 
     public void initiate_game() {
 
@@ -77,12 +77,11 @@ public class Game {
     public void play(){
         welcome();
 
-        boolean finished = false;
-        while(!finished){
+        hasWon = false;
+        while(!hasWon){
             Command command = parser.getCommand();
-            finished = processCommand(command);
+            hasWon = processCommand(command);
         }
-        System.out.println("Thank you for playing!");
     }
     private void welcome(){
         System.out.println("---------------------------------------------------------------");
@@ -130,7 +129,13 @@ public class Game {
                 }
             }
         } else if (commandWord.equals("!scare")) {
-            //TODO: If king in room = win
+            // Wenn Spieler in Raum mit König und Spieler besitzt Item Messer, dann gewinnen
+            if (Room.playerSameRoomKing(this.rooms) && Item.canKillKing(this.items)){
+                hasWon = true;
+                System.out.println("You did it! You finished the game!");
+            } else {
+                System.out.println("Can't do this quite yet.");
+            }
         } else if (commandWord.equals("!exits")) {
             Room.displayExits(this.rooms);
         } else if (commandWord.equals("!move")) {

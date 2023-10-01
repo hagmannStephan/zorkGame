@@ -79,4 +79,13 @@ public class Item {
         }
         return inventory;
     }
+
+    public static Boolean canKillKing(ArrayList<Item> items){
+        for (Item item : items) {
+            if(item.isPickedUp && item.isAbleToKillKing()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
