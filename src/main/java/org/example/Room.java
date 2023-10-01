@@ -36,10 +36,6 @@ public class Room {
         this.name = name;
     }
 
-    public ArrayList<Item> getItemsInRoom() {
-        return itemsInRoom;
-    }
-
     public void setItemsInRoom(ArrayList<Item> itemsInRoom) {
         this.itemsInRoom = itemsInRoom;
     }
@@ -64,6 +60,7 @@ public class Room {
         this.previousRoom = previousRoom;
         this.exits = new HashMap<>();
     }
+
     public void setExits(Room north, Room east, Room south, Room west) {
         exits.put("north", north);
         exits.put("east", east);
@@ -111,13 +108,17 @@ public class Room {
         System.out.println("No room with player found.");
     }
 
-    public String whereName(){
-        StringBuilder stringBuilder = new StringBuilder("You are in " + name );
-        return stringBuilder.toString();
+    public ArrayList<Item> getItemsInRoom() {
+        return this.itemsInRoom;
     }
 
-    public Room nextRoom(String name) {
-        return exits.get(name);
+    public static Room getItemsInRoom(ArrayList<Room> rooms) {
+        for (Room room : rooms) {
+            if(room.containsPlayer) {
+                return room;
+            }
+        }
+        return new Room("", new ArrayList<Item>(), false, false, false);
     }
 
 }

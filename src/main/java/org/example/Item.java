@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class Item {
     private String name;
     private String location;
@@ -55,5 +57,26 @@ public class Item {
         this.ableToKillKing = ableToKillKing;
 
         // TODO: Place the Item in the correct location, this also has to be true if it is dropped again
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", weight=" + weight +
+                ", isPickedUp=" + isPickedUp +
+                ", ableToKillKing=" + ableToKillKing +
+                '}';
+    }
+
+    public static ArrayList<Item> getInventory (ArrayList<Item> items){
+        ArrayList<Item> inventory = new ArrayList<Item>();
+        for (Item item : items) {
+            if(item.isPickedUp) {
+                inventory.add(item);
+            }
+        }
+        return inventory;
     }
 }

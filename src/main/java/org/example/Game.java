@@ -6,6 +6,8 @@ import java.util.ArrayList;
 public class Game {
     private Parser parser;
     private ArrayList<Room> rooms;
+    private ArrayList<Item> items;
+
 
     public void initiate_game() {
 
@@ -17,6 +19,17 @@ public class Game {
         Item Champagne = new Item("Champagne", "Ballsaal", 1000, false,false);
         Item Suppe = new Item("Suppe", "Kueche", 500, false,false);
         Item Gewand = new Item("Gewand", "Schlafzimmer", 2000, false,false);
+
+        ArrayList<Item> items = new ArrayList<Item>() {{
+            add(Messer);
+            add(Rose);
+            add(Krone);
+            add(Champagne);
+            add(Suppe);
+            add(Gewand);
+        }};
+
+        this.items = items;
 
         ArrayList<Item> hofItems = new ArrayList<>();
         ArrayList<Item> ballsaalItems = new ArrayList<>();
@@ -87,7 +100,7 @@ public class Game {
 
         String commandWord = command.getCommandWord();
         if (commandWord.equals("!back")){
-            //TODO: go to 'previousLocation'... oder wieauimmer es heisst.
+            //TODO: go to 'previousLocation'
         } else if (commandWord.equals("!map")) {
             System.out.println("                                  |----------|     |-------------|");
             System.out.println("                                  | Kronsaal |     | Schatzkammer|");
@@ -101,33 +114,38 @@ public class Game {
             System.out.println("                                  | Küche    |");
             System.out.println("                                  |----------|");
         } else if (commandWord.equals("!inventory")) {
-            //TODO: List items in inventory
+            System.out.println(Item.getInventory(this.items));
         } else if (commandWord.equals("!drop")) {
             //TODO: Drop mit commmandArgument
         } else if (commandWord.equals("!items")) {
-            //TODO: List items in room
+            System.out.println(Room.getItemsInRoom(this.rooms).getItemsInRoom());
         } else if (commandWord.equals("!pickup")) {
-            //TODO: Mit commandArgumant
+            if(!command.hasAnArgument()) {
+                System.out.println("Command requires argument");
+            } else {
+                for (Item item : Room.getItemsInRoom(this.rooms).getItemsInRoom()) {
+                    if(item.getName().equals(command.getCommandArgument())) {
+                        item.setPickedUp(true);
+                    }
+                }
+            }
         } else if (commandWord.equals("!scare")) {
             //TODO: If king in room = win
         } else if (commandWord.equals("!exits")) {
             Room.displayExits(this.rooms);
         } else if (commandWord.equals("!move")) {
-            //Add function that returns direction to move to
-            String direction = "east";
             if(!command.hasAnArgument()){
                 System.out.println("Command requires argument");
             } else {
                 Room.movePlayer(this.rooms, command.getCommandArgument());
             }
-
         } else if (commandWord.equals("!help")) {
             System.out.println("Type '!map' for map of the game.");
             System.out.println("Type '!back' to go to the previous room.");
             System.out.println("Type '!inventory' for a list of all your items.");
-            System.out.println("Type '!drop' with an argument.."); //TODO: Ich hen kein bock auf das
+            System.out.println("Type '!drop' with an argument..");
             System.out.println("Type '!items' for a list of all items in your location.");
-            System.out.println("Type '!pickup' with an argument... "); //TODO: Glich kein bock uf das
+            System.out.println("Type '!pickup' with an argument... ");
             System.out.println("Type '!scare' to kill the king.");
             System.out.println("Type '!exits' to show a list of all exits.");
             System.out.println("Type '!move' with an argument. (north, east, south, west");
@@ -135,5 +153,4 @@ public class Game {
         }
         return false;
     }
-
 }

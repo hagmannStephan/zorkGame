@@ -5,7 +5,7 @@ public class Zork2Game {
         Game zorkgame = new Game();
 
         zorkgame.initiate_game();
-        System.out.println("Items initiated successfully");
+        System.out.println("Game initiated successfully");
 
         zorkgame.play();
     }
