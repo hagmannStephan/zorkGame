@@ -70,10 +70,18 @@ public class Room {
 
     public static void movePlayer(ArrayList<Room> roomList, String direction) {
         Room currentRoom = null;
+        Room previousRoom = null;
+        for (Room room : roomList) {
+            if(room.isPreviousRoom()) {
+                previousRoom = room;
+                room.setPreviousRoom(false);
+            }
+        }
         for (Room room : roomList) {
             if (room.isContainsPlayer()) {
                 currentRoom = room;
                 room.setContainsPlayer(false);
+                room.setPreviousRoom(true);
                 break;
             }
         }
@@ -84,6 +92,8 @@ public class Room {
                 nextRoom.setContainsPlayer(true);
             } else {
                 currentRoom.setContainsPlayer(true);
+                currentRoom.setPreviousRoom(false);
+                previousRoom.setPreviousRoom(true);
                 System.out.println("There is no room in the " + direction + " direction.");
             }
         } else {
@@ -127,4 +137,23 @@ public class Room {
         return false;
     }
 
+    public static void movePlayerBack(ArrayList<Room> rooms){
+        Room previousRoom = null;
+        Room currentRoom = null;
+        for(Room room : rooms){
+            if(room.isPreviousRoom()){
+                previousRoom = room;
+            } else if (room.isContainsPlayer()) {
+                currentRoom = room;
+            }
+        }
+        if(previousRoom != null && currentRoom != null){
+            previousRoom.setContainsPlayer(true);
+            previousRoom.setPreviousRoom(false);
+            currentRoom.setContainsPlayer(false);
+            System.out.println("Moved back successfully");
+        } else {
+            System.out.println("Sorry, you can't move back here");
+        }
+    }
 }

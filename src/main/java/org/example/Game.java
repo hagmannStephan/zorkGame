@@ -99,7 +99,7 @@ public class Game {
 
         String commandWord = command.getCommandWord();
         if (commandWord.equals("!back")){
-            //TODO: go to 'previousLocation'
+            Room.movePlayerBack(this.rooms);
         } else if (commandWord.equals("!map")) {
             System.out.println("                                  |----------|     |-------------|");
             System.out.println("                                  | Kronsaal |     | Schatzkammer|");
