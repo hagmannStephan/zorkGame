@@ -129,7 +129,7 @@ public class Game {
                         int currentWeight = InventoryItem.getWeight();
                         weight += currentWeight;
                     }
-                    if (weight > 2000) {
+                    if (weight > 5000) {
                         System.out.println("You carry to much items, consider dropping some of them");
                     } else{
                         if(item.getName().equals(command.getCommandArgument())) {
