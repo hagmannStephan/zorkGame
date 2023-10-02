@@ -90,6 +90,9 @@ public class Room {
             Room nextRoom = currentRoom.getExits().get(direction);
             if (nextRoom != null) {
                 nextRoom.setContainsPlayer(true);
+                if (nextRoom.getName().equals("Hof")){
+                    System.out.println("Brr hier auf dem Hof ist es kalt");
+                }
             } else {
                 currentRoom.setContainsPlayer(true);
                 currentRoom.setPreviousRoom(false);
