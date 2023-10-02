@@ -123,8 +123,18 @@ public class Game {
                 System.out.println("Command requires argument");
             } else {
                 for (Item item : Room.getItemsInRoom(this.rooms).getItemsInRoom()) {
-                    if(item.getName().equals(command.getCommandArgument())) {
-                        item.setPickedUp(true);
+                    ArrayList<Item> inventoryItems = Item.getInventory(this.items);
+                    int weight = 0;
+                    for(Item InventoryItem : inventoryItems){
+                        int currentWeight = InventoryItem.getWeight();
+                        weight += currentWeight;
+                    }
+                    if (weight > 2000) {
+                        System.out.println("You carry to much items, consider dropping some of them");
+                    } else{
+                        if(item.getName().equals(command.getCommandArgument())) {
+                            item.setPickedUp(true);
+                        }
                     }
                 }
             }
