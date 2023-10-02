@@ -115,7 +115,7 @@ public class Game {
         } else if (commandWord.equals("!inventory")) {
             System.out.println(Item.getInventory(this.items));
         } else if (commandWord.equals("!drop")) {
-            //TODO: Drop mit commmandArgument
+            Item.dropItem(this.items, command.getCommandArgument(), this.rooms);
         } else if (commandWord.equals("!items")) {
             System.out.println(Room.getItemsInRoom(this.rooms).getItemsInRoom());
         } else if (commandWord.equals("!pickup")) {

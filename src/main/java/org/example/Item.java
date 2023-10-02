@@ -55,8 +55,6 @@ public class Item {
         this.weight = weight;
         this.isPickedUp = isPickedUp;
         this.ableToKillKing = ableToKillKing;
-
-        // TODO: Place the Item in the correct location, this also has to be true if it is dropped again
     }
 
     @Override
@@ -87,5 +85,21 @@ public class Item {
             }
         }
         return false;
+    }
+
+    public static void dropItem(ArrayList<Item> items, String itemName, ArrayList<Room> rooms){
+        for(Item item : items){
+            if(item.getName().equals(itemName)){
+                item.setPickedUp(false);
+                for(Room room : rooms){
+                    if(room.isContainsPlayer()){
+                        room.appendItemInRoom(item, rooms);
+                        item.setLocation(room.getName());
+                        return;
+                    }
+                }
+            }
+        }
+        System.out.println("Only drop items that are in your inventory");
     }
 }

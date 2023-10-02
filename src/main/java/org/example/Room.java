@@ -159,4 +159,26 @@ public class Room {
             System.out.println("Sorry, you can't move back here");
         }
     }
+
+    public void appendItemInRoom(Item itemObject, ArrayList<Room> rooms) {
+        for (Room room : rooms) {
+            if (room.itemsInRoom != null) {
+                ArrayList<Item> items = room.getItemsInRoom();
+                Iterator<Item> iterator = items.iterator();
+                while (iterator.hasNext()) {
+                    Item item = iterator.next();
+                    if (item == itemObject) {
+                        iterator.remove();
+                    }
+                }
+            }
+        }
+        itemsInRoom.add(itemObject);
+    }
+
+
+    public void removeItemInRoom(Item itemObject){
+        itemsInRoom.remove(itemObject);
+    }
+
 }
