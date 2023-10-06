@@ -69,38 +69,41 @@ public class Room {
     }
 
     public static void movePlayer(ArrayList<Room> roomList, String direction) {
-        Room currentRoom = null;
-        Room previousRoom = null;
-        for (Room room : roomList) {
-            if(room.isPreviousRoom()) {
-                previousRoom = room;
-                room.setPreviousRoom(false);
+        try {
+            Room currentRoom = null;
+            Room previousRoom = null;
+            for (Room room : roomList) {
+                if(room.isPreviousRoom()) {
+                    previousRoom = room;
+                    room.setPreviousRoom(false);
+                }
             }
-        }
-        for (Room room : roomList) {
-            if (room.isContainsPlayer()) {
-                currentRoom = room;
-                room.setContainsPlayer(false);
-                room.setPreviousRoom(true);
-                break;
+            for (Room room : roomList) {
+                if (room.isContainsPlayer()) {
+                    currentRoom = room;
+                    room.setContainsPlayer(false);
+                    room.setPreviousRoom(true);
+                    break;
+                }
             }
-        }
-
-        if (currentRoom != null) {
-            Room nextRoom = currentRoom.getExits().get(direction);
-            if (nextRoom != null) {
-                nextRoom.setContainsPlayer(true);
-                if (nextRoom.getName().equals("Hof")){
-                    System.out.println("Brr hier auf dem Hof ist es kalt");
+            if (currentRoom != null) {
+                Room nextRoom = currentRoom.getExits().get(direction);
+                if (nextRoom != null) {
+                    nextRoom.setContainsPlayer(true);
+                    if (nextRoom.getName().equals("Hof")){
+                        System.out.println("Brr hier auf dem Hof ist es kalt");
+                    }
+                } else {
+                    currentRoom.setContainsPlayer(true);
+                    currentRoom.setPreviousRoom(false);
+                    previousRoom.setPreviousRoom(true);
+                    System.out.println("There is no room in the " + direction + " direction.");
                 }
             } else {
-                currentRoom.setContainsPlayer(true);
-                currentRoom.setPreviousRoom(false);
-                previousRoom.setPreviousRoom(true);
-                System.out.println("There is no room in the " + direction + " direction.");
+                System.out.println("Player not found in any room.");
             }
-        } else {
-            System.out.println("Player not found in any room.");
+        } catch (Exception e) {
+            System.out.println("There is no room in this direction");
         }
     }
 
