@@ -130,7 +130,7 @@ public class Game {
                         weight += currentWeight;
                     }
                     if (weight > 5000) {
-                        System.out.println("You carry to much items, consider dropping some of them");
+                        System.out.println("You carry too many items. Consider dropping some of them");
                     } else{
                         if(item.getName().equals(command.getCommandArgument())) {
                             item.setPickedUp(true);
@@ -142,7 +142,7 @@ public class Game {
             // Wenn Spieler in Raum mit König und Spieler besitzt Item Messer, dann gewinnen
             if (Room.playerSameRoomKing(this.rooms) && Item.canKillKing(this.items)){
                 hasWon = true;
-                System.out.println("You did it! You finished the game!");
+                System.out.println("You scared the King away! You finished the game!");
             } else {
                 System.out.println("Can't do this quite yet.");
             }
