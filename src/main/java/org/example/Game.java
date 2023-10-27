@@ -86,7 +86,7 @@ public class Game {
     private void welcome(){
         System.out.println("---------------------------------------------------------------");
         System.out.println("Welcome to Kill The King!");
-        System.out.println("The goal of this game, is to chase the King out of the castle.");
+        System.out.println("The goal of this game is to chase the King out of the castle.");
         System.out.println("type '!help', if you need help.");
         System.out.println("---------------------------------------------------------------");
     }
@@ -120,7 +120,7 @@ public class Game {
             System.out.println(Room.getItemsInRoom(this.rooms).getItemsInRoom());
         } else if (commandWord.equals("!pickup")) {
             if(!command.hasAnArgument()) {
-                System.out.println("Command requires argument");
+                System.out.println("This command requires argument");
             } else {
                 for (Item item : Room.getItemsInRoom(this.rooms).getItemsInRoom()) {
                     ArrayList<Item> inventoryItems = Item.getInventory(this.items);
@@ -130,7 +130,7 @@ public class Game {
                         weight += currentWeight;
                     }
                     if (weight > 5000) {
-                        System.out.println("You carry too many items. Consider dropping some of them");
+                        System.out.println("You carry too many items. Consider dropping some!");
                     } else{
                         if(item.getName().equals(command.getCommandArgument())) {
                             item.setPickedUp(true);
@@ -144,26 +144,26 @@ public class Game {
                 hasWon = true;
                 System.out.println("You scared the King away! You finished the game!");
             } else {
-                System.out.println("Can't do this quite yet.");
+                System.out.println("The King is not here!");
             }
         } else if (commandWord.equals("!exits")) {
             Room.displayExits(this.rooms);
         } else if (commandWord.equals("!move")) {
             if(!command.hasAnArgument()){
-                System.out.println("Command requires argument");
+                System.out.println("This command requires argument");
             } else {
                 Room.movePlayer(this.rooms, command.getCommandArgument());
             }
         } else if (commandWord.equals("!help")) {
-            System.out.println("Type '!map' for map of the game.");
+            System.out.println("Type '!map' for a map of the game.");
             System.out.println("Type '!back' to go to the previous room.");
             System.out.println("Type '!inventory' for a list of all your items.");
-            System.out.println("Type '!drop' with an argument..");
-            System.out.println("Type '!items' for a list of all items in your location.");
-            System.out.println("Type '!pickup' with an argument... ");
+            System.out.println("Type '!drop {item}' to drop an item");
+            System.out.println("Type '!items' for a list of all items in your room.");
+            System.out.println("Type '!pickup {item}' to pick up an item");
             System.out.println("Type '!scare' to kill the king.");
             System.out.println("Type '!exits' to show a list of all exits.");
-            System.out.println("Type '!move' with an argument. (north, east, south, west");
+            System.out.println("Type '!move (north, east, south, west)' to move to another room.");
             System.out.println("Type '!help' for this view.");
         }
         return false;
